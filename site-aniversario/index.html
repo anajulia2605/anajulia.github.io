@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Cadastro</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .container h2 {
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .form-group textarea {
+            resize: vertical;
+        }
+        .form-group button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .form-group button:hover {
+            background-color: #0056b3;
+        }
+        .message {
+            margin-top: 20px;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Formulário de Cadastro</h2>
+        <div class="form-group">
+            <label for="name">Nome</label>
+            <input type="text" id="name" required>
+        </div>
+        <div class="form-group">
+            <label for="age">Idade</label>
+            <input type="number" id="age" required>
+        </div>
+        <div class="form-group">
+            <label for="message">Mensagem</label>
+            <textarea id="message" rows="4" required></textarea>
+        </div>
+        <div class="form-group">
+            <button type="button" id="submit">Cadastrar</button>
+        </div>
+        <div class="message" id="statusMessage"></div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#submit').click(function() {
+                let name = $('#name').val();
+                let age = $('#age').val();
+                let message = $('#message').val();
+
+                if (name && age && message) {
+                    let data = {
+                        name: name,
+                        age: age,
+                        message: message
+                    };
+
+                    localStorage.setItem('userData', JSON.stringify(data));
+                    $('#statusMessage').text('Dados cadastrados com sucesso!');
+                    location.href="aniversariante.html"
+                } else {
+                    $('#statusMessage').text('Por favor, preencha todos os campos.');
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
